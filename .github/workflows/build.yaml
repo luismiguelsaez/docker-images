@@ -33,13 +33,15 @@ jobs:
         with:
           platforms: linux/amd64,linux/arm64
           context: ./python/api/rest
-          push: false
+          push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/api:latest
       -
         name: Scan image
         uses: anchore/scan-action@v2
         with:
           image: ${{ secrets.DOCKERHUB_USERNAME }}/api:latest
-          fail-build: true
+          fail-build: false
           severity-cutoff: critical
- 
+      -
+        name: grype scan JSON results
+        run: for j in `ls ./anchore-reports/*.json`; do echo "---- ${j} ----"; cat ${j}; echo; done
