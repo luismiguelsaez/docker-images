@@ -29,4 +29,4 @@ jobs:
         with:
           context: python/api/rest
           push: false
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/api:latest
+          tags: luismiguelsaez/api:latest
