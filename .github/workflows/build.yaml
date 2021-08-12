@@ -28,18 +28,18 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
       -
-        name: Build and push
-        id: docker_build
+        name: Build image
         uses: docker/build-push-action@v2
         with:
           platforms: linux/amd64,linux/arm64
           context: ./python/api/rest
           push: false
-          load: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/api:latest
       -
         name: Scan image
         uses: anchore/scan-action@v2
         with:
           image: ${{ secrets.DOCKERHUB_USERNAME }}/api:latest
+          fail-build: true
+          severity-cutoff: critical
  
