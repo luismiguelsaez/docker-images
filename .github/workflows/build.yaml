@@ -8,6 +8,7 @@ on:
 
 jobs:
   docker:
+    environment: DOCKER
     runs-on: ubuntu-latest
     steps:
       -
@@ -33,4 +34,4 @@ jobs:
           platforms: linux/amd64,linux/arm64
           context: ./python/api/rest
           push: true
-          tags: luismiguelsaez/api:latest
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/api:latest
