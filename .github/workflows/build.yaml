@@ -8,7 +8,8 @@ on:
 
 jobs:
   docker:
-    environment: DOCKER
+    environment:
+      name: DOCKER
     runs-on: ubuntu-latest
     steps:
       -
